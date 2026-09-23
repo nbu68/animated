@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Interactive Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- ใช้ฟอนต์ Space Grotesk สำหรับภาษาอังกฤษแนวอวกาศ/กราฟิก และ Kanit สำหรับภาษาไทย -->
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600;800&family=Space+Grotesk:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Kanit', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        bgMain: '#f0f0f0',
+                        neoPink: '#ff007f',
+                        neoCyan: '#00f0ff',
+                        neoLime: '#ccff00',
+                        neoOrange: '#ff5500',
+                        neoPurple: '#b700ff',
+                    },
+                    boxShadow: {
+                        'neo-solid': '8px 8px 0px 0px rgba(0,0,0,1)',
+                        'neo-solid-hover': '12px 12px 0px 0px rgba(0,0,0,1)',
+                        'neo-pink': '8px 8px 0px 0px #ff007f',
+                        'neo-cyan': '8px 8px 0px 0px #00f0ff',
+                        'neo-lime': '8px 8px 0px 0px #ccff00',
+                        'neo-orange': '8px 8px 0px 0px #ff5500',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            background-image: radial-gradient(#000000 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow-x: hidden;
+        }
+
+        /* Intro Screen Styles */
+        #intro-screen {
+            position: fixed;
+            inset: 0;
+            background-color: #000;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        #intro-screen.hidden-up {
+            transform: translateY(-100vh);
+        }
+
+        .glitch-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: -0.05em;
+            position: relative;
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        .glitch-name:hover {
+            color: #ccff00;
+            text-shadow: 4px 4px 0px #ff007f, -4px -4px 0px #00f0ff;
+        }
+
+        @keyframes pulse-glow {
+            0% { text-shadow: 0 0 10px rgba(255,255,255,0.2); }
+            100% { text-shadow: 0 0 30px rgba(255,255,255,0.6); }
+        }
+
+        /* Card Hover Effects */
+        .neo-card {
+            border: 4px solid #000;
+            transition: all 0.2s ease-in-out;
+            background: #fff;
+        }
+        .neo-card:hover {
+            transform: translate(-4px, -4px);
+        }
+
+        /* Marquee Animation */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+            border-top: 4px solid #000;
+            border-bottom: 4px solid #000;
+            background: #ccff00;
+            padding: 10px 0;
+        }
+        .marquee p {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+        }
+        @keyframes marquee {
+            0%   { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+    </style>
+</head>
+<body class="text-black antialiased relative">
+
+    <!-- Intro Screen (Landing Page) -->
+    <!-- คุณสามารถเปลี่ยนคำว่า "SAKIBA" เป็นชื่อของคุณได้เลยที่นี่ -->
+    <div id="intro-screen" onclick="enterShowcase()">
+        <h1 class="glitch-name">KITSADA</h1>
+        <p class="text-white/70 font-sans mt-4 text-xl md:text-2xl animate-bounce tracking-widest uppercase">
+            [ Click to Enter Showcase ]
+        </p>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="min-h-screen pb-20 opacity-0 transition-opacity duration-1000 delay-500">
+        
+        <!-- Graphic Header -->
+        <header class="pt-20 pb-10 px-6 border-b-4 border-black bg-white">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-end gap-6">
+                <div>
+                    <h2 class="font-display text-5xl md:text-7xl font-black uppercase leading-none tracking-tighter">
+                        Web Design <br> 
+                        <span class="text-neoPink drop-shadow-[4px_4px_0px_#000]">Showcase</span>
+                    </h2>
+                    <p class="font-sans text-xl font-bold mt-4 max-w-xl border-l-4 border-black pl-4">
+                        คอลเลกชันผลงานการออกแบบและพัฒนาเว็บไซต์ เน้นความแตกต่าง ความคิดสร้างสรรค์ และการนำเสนอแบบกราฟิก
+                    </p>
+                </div>
+                <div class="text-right">
+                    <div class="inline-block bg-black text-neoLime font-display font-bold px-4 py-2 border-4 border-black shadow-neo-pink transform rotate-3">
+                        V. 2.0 // 2024
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Marquee Banner -->
+        <div class="marquee">
+            <p>✦ CREATIVE WEB DESIGN ✦ FRONT-END DEVELOPMENT ✦ UI/UX EXPERIMENTS ✦ GRAPHIC HEAVY ✦ RESPONSIVE LAYOUTS ✦ READY FOR EVALUATION ✦</p>
+        </div>
+
+        <section class="max-w-7xl mx-auto px-6 py-16">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: Personal Website -->
+                <div class="neo-card shadow-neo-solid hover:shadow-neo-pink group flex flex-col h-full bg-white relative overflow-hidden">
+                    <div class="h-48 border-b-4 border-black bg-neoPink relative">
+                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/ff007f/ffffff?text=ABOUT+ME')] bg-cover bg-center mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute top-2 right-2 bg-white text-black font-bold px-3 py-1 border-2 border-black text-xs font-display">Google Sites</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-display text-2xl font-black uppercase mb-2">Personal Website</h3>
+                        <p class="font-sans text-gray-700 font-medium mb-6 flex-grow leading-tight">
+                            เว็บไซต์แนะนำตัวส่วนบุคคล รวบรวมประวัติ ทักษะ และผลงาน นำเสนอความเป็นตัวเองอย่างชัดเจน
+                        </p>
+                        <a href="https://sites.google.com/northbkk.ac.th/aboutme?usp=sharing" target="_blank" class="w-full block text-center font-display font-bold bg-black text-white py-3 border-2 border-black hover:bg-neoPink hover:text-black transition-colors uppercase">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2: Alzheimer Info -->
+                <div class="neo-card shadow-neo-solid hover:shadow-neo-cyan group flex flex-col h-full bg-white relative overflow-hidden">
+                    <div class="h-48 border-b-4 border-black bg-neoCyan relative">
+                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/00f0ff/000000?text=DATA+ANALYTIC')] bg-cover bg-center mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-display text-2xl font-black uppercase mb-2">Alzheimer Data</h3>
+                        <p class="font-sans text-gray-700 font-medium mb-6 flex-grow leading-tight">
+                            เว็บไซต์ข้อมูลเชิงลึกและ Data Analytic เกี่ยวกับโรคอัลไซเมอร์ การจัดเรียงข้อมูลให้อ่านง่าย
+                        </p>
+                        <a href="https://sites.google.com/northbkk.ac.th/alzheimer-disease?usp=sharing" target="_blank" class="w-full block text-center font-display font-bold bg-black text-white py-3 border-2 border-black hover:bg-neoCyan hover:text-black transition-colors uppercase">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3: BMI -->
+                <div class="neo-card shadow-neo-solid hover:shadow-neo-lime group flex flex-col h-full bg-white relative overflow-hidden">
+                    <div class="h-48 border-b-4 border-black bg-neoLime relative">
+                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/ccff00/000000?text=BMI+APP')] bg-cover bg-center mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute top-2 right-2 bg-white text-black font-bold px-3 py-1 border-2 border-black text-xs font-display">Web App</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-display text-2xl font-black uppercase mb-2">BMI Calculator</h3>
+                        <p class="font-sans text-gray-700 font-medium mb-6 flex-grow leading-tight">
+                            แอปพลิเคชันคำนวณดัชนีมวลกาย โต้ตอบกับผู้ใช้ (Interactive) ประมวลผลรวดเร็วและแม่นยำ
+                        </p>
+                        <a href="https://sakiba-01.github.io/bmi-v1/" target="_blank" class="w-full block text-center font-display font-bold bg-black text-white py-3 border-2 border-black hover:bg-neoLime hover:text-black transition-colors uppercase">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Open House -->
+                <div class="neo-card shadow-neo-solid hover:shadow-neo-orange group flex flex-col h-full bg-white relative overflow-hidden">
+                    <div class="h-48 border-b-4 border-black bg-neoOrange relative">
+                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/ff5500/000000?text=OPEN+HOUSE')] bg-cover bg-center mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-display text-2xl font-black uppercase mb-2">Open House Reg</h3>
+                        <p class="font-sans text-gray-700 font-medium mb-6 flex-grow leading-tight">
+                            ระบบลงทะเบียนร่วมงาน Open House ออกแบบฟอร์มให้ใช้งานง่าย รองรับผู้ใช้งานจำนวนมาก
+                        </p>
+                        <a href="https://sakiba-01.github.io/OpenHouse/" target="_blank" class="w-full block text-center font-display font-bold bg-black text-white py-3 border-2 border-black hover:bg-neoOrange hover:text-black transition-colors uppercase">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6: WOKIFY -->
+                <div class="neo-card shadow-neo-solid hover:shadow-neo-lime group flex flex-col h-full bg-black text-white relative overflow-hidden">
+                    <div class="h-48 border-b-4 border-white bg-green-900 relative">
+                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/1db954/ffffff?text=WOKIFY')] bg-cover bg-center opacity-70 group-hover:opacity-100 transition-opacity"></div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-display text-2xl font-black uppercase mb-2 text-neoLime">WOKIFY</h3>
+                        <p class="font-sans text-gray-300 font-medium mb-6 flex-grow leading-tight">
+                            โปรเจกต์เว็บแอปพลิเคชัน จำลองประสบการณ์สตรีมมิ่ง ดีไซน์ดุดันและเน้น UI ที่ทันสมัย
+                        </p>
+                        <a href="https://sakiba-01.github.io/WOKIFY/" target="_blank" class="w-full block text-center font-display font-bold bg-white text-black py-3 border-2 border-white hover:bg-neoLime hover:border-neoLime transition-colors uppercase">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 7: Animate -->
+                <div class="neo-card shadow-neo-solid hover:shadow-neo-cyan group flex flex-col h-full bg-white relative overflow-hidden">
+                    <div class="h-48 border-b-4 border-black bg-blue-500 relative">
+                        <div class="absolute inset-0 bg-[url('https://placehold.co/600x400/3b82f6/ffffff?text=ANIMATE+WEB')] bg-cover bg-center mix-blend-luminosity opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute top-2 left-2 bg-neoPink text-white font-bold px-3 py-1 border-2 border-black text-xs font-display">Special Graphic Focus</div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <h3 class="font-display text-2xl font-black uppercase mb-2">Animate</h3>
+                        <p class="font-sans text-gray-700 font-medium mb-6 flex-grow leading-tight">
+                            เว็บไซต์ที่เน้นการใช้ Animation และ Graphic เคลื่อนไหว สร้างความน่าสนใจและแปลกใหม่ให้กับการท่องเว็บ ฉีกกฎการดีไซน์แบบเดิมๆ
+                        </p>
+                        <a href="https://sakiba-01.github.io/Animate/" target="_blank" class="w-full block text-center font-display font-bold bg-black text-white py-3 border-2 border-black hover:bg-neoCyan hover:text-black transition-colors uppercase">
+                            Explore
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-20 border-t-4 border-black bg-white py-8 px-6 text-center">
+            <p class="font-display font-bold uppercase tracking-widest text-sm">
+                &copy; <span id="year"></span> Web Design Showcase
+            </p>
+        </footer>
+
+    </main>
+
+    <script>
+        // Set current year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Intro Screen Click Logic
+        function enterShowcase() {
+            const introScreen = document.getElementById('intro-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // Slide intro screen up
+            introScreen.classList.add('hidden-up');
+            
+            // Fade in main content
+            setTimeout(() => {
+                mainContent.classList.remove('opacity-0');
+                mainContent.classList.add('opacity-100');
+            }, 500); // Wait a bit for the slide up to start
+            
+            // Completely remove intro from DOM after animation completes to allow clicking things under it
+            setTimeout(() => {
+                introScreen.style.display = 'none';
+            }, 1000); 
+        }
+    </script>
+</body>
+</html>
